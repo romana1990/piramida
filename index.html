@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coord</title>
+    <title>Enter Coordinates</title>
     <style>
         /* Styling for a modern, dark theme */
         body {
@@ -87,6 +87,34 @@
             padding: 15px;
             border-radius: 8px;
         }
+
+        /* Meeting point and time display */
+        .meeting-point {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            background-color: #2b2b2b;
+            color: #ffffff;
+            font-size: 18px;
+            display: none;
+        }
+
+        .meeting-time {
+            font-size: 22px;
+            color: #4caf50;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .map {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: #333;
+            border-radius: 8px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
@@ -108,6 +136,15 @@
 
     <button onclick="checkCoordinates()">Submit</button>
     <div id="result">Coordinates are correct! Proceed to the next step.</div>
+
+    <!-- Meeting point and time section -->
+    <div class="meeting-point" id="meeting-point">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13722.012033541123!2d20.462568970839612!3d44.78662039065843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a7016f6992323%3A0xfc5b5f9db481bef3!2sRestaurant%20Hyde%20Park!5e1!3m2!1sen!2srs!4v1731177680123!5m2!1sen!2srs"
+            width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy">
+        </iframe>
+        <div class="meeting-time">Meet at 20:00 12.11.2024.</div>
+    </div>
 </div>
 
 <script>
@@ -131,6 +168,7 @@
         const secondsE = parseInt(document.getElementById("secondsE").value);
 
         const resultDiv = document.getElementById("result");
+        const meetingPointDiv = document.getElementById("meeting-point");
 
         // Check if the entered coordinates match the correct values
         if (
@@ -138,10 +176,14 @@
             degreesE === correctDegreesE && minutesE === correctMinutesE && secondsE === correctSecondsE
         ) {
             resultDiv.style.display = "block";
-            resultDiv.textContent = "Coordinates are correct! Proceed to the next step.";
+            resultDiv.textContent = "Coordinates are correct!";
+
+            // Display the meeting point and time
+            meetingPointDiv.style.display = "block";
         } else {
             resultDiv.style.display = "block";
             resultDiv.textContent = "Incorrect coordinates. Try again!";
+            meetingPointDiv.style.display = "none";  // Hide meeting point if incorrect
         }
     }
 </script>
