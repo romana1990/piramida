@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coord</title>
+    <style>
+        /* Styling for a modern, dark theme */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: #1c1c1c;
+            color: #e0e0e0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #2e2e2e;
+            padding: 50px 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .pyramid-symbol {
+            font-size: 50px;
+            color: #4caf50;
+            margin-bottom: 20px;
+        }
+
+        .input-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .coord-input {
+            width: 60px;
+            height: 50px;
+            font-size: 20px;
+            text-align: center;
+            border: none;
+            border-radius: 8px;
+            background-color: #3e3e3e;
+            color: #ffffff;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .coord-input:focus {
+            outline: none;
+            border: 2px solid #4caf50;
+            background-color: #444;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #ffffff;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        button:hover {
+            background-color: #43a047;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        #result {
+            margin-top: 25px;
+            font-size: 20px;
+            font-weight: bold;
+            display: none;
+            color: #ffffff;
+            background-color: #333;
+            padding: 15px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="pyramid-symbol">▲</div>
+
+    <div class="input-container">
+        <input type="number" class="coord-input" id="degreesN" placeholder="°" min="0" max="90">
+        <input type="number" class="coord-input" id="minutesN" placeholder="′" min="0" max="59">
+        <input type="number" class="coord-input" id="secondsN" placeholder="″" min="0" max="59">
+    </div>
+
+    <div class="input-container">
+        <input type="number" class="coord-input" id="degreesE" placeholder="°" min="0" max="180">
+        <input type="number" class="coord-input" id="minutesE" placeholder="′" min="0" max="59">
+        <input type="number" class="coord-input" id="secondsE" placeholder="″" min="0" max="59">
+    </div>
+
+    <button onclick="checkCoordinates()">Submit</button>
+    <div id="result">Coordinates are correct! Proceed to the next step.</div>
+</div>
+
+<script>
+    function checkCoordinates() {
+        // Example correct coordinates - replace these with your actual target coordinates
+        const correctDegreesN = 44;
+        const correctMinutesN = 49;
+        const correctSecondsN = 14;
+
+        const correctDegreesE = 20;
+        const correctMinutesE = 27;
+        const correctSecondsE = 44;
+
+        // Get values from input fields
+        const degreesN = parseInt(document.getElementById("degreesN").value);
+        const minutesN = parseInt(document.getElementById("minutesN").value);
+        const secondsN = parseInt(document.getElementById("secondsN").value);
+
+        const degreesE = parseInt(document.getElementById("degreesE").value);
+        const minutesE = parseInt(document.getElementById("minutesE").value);
+        const secondsE = parseInt(document.getElementById("secondsE").value);
+
+        const resultDiv = document.getElementById("result");
+
+        // Check if the entered coordinates match the correct values
+        if (
+            degreesN === correctDegreesN && minutesN === correctMinutesN && secondsN === correctSecondsN &&
+            degreesE === correctDegreesE && minutesE === correctMinutesE && secondsE === correctSecondsE
+        ) {
+            resultDiv.style.display = "block";
+            resultDiv.textContent = "Coordinates are correct! Proceed to the next step.";
+        } else {
+            resultDiv.style.display = "block";
+            resultDiv.textContent = "Incorrect coordinates. Try again!";
+        }
+    }
+</script>
+
+</body>
+</html>
